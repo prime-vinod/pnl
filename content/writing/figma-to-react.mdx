@@ -1,0 +1,17 @@
+---
+title: Turning Figma into pixel-perfect React
+date: "2025-11-20"
+tags: [frontend, react]
+description: How I translate high-fidelity designs into responsive, reusable components without losing design intent.
+---
+
+Most of my work starts in Figma and ends in a browser. The gap between the two is where design intent usually leaks out — spacing drifts, type scales get rounded off, breakpoints get guessed. Closing that gap is most of the job.
+
+A few things I lean on:
+
+- **Read the design system first, not the screens.** Tokens for color, type, and spacing tell you what's reusable before you write a single component.
+- **Component-based architecture.** Small, composable pieces with Tailwind keep layouts pixel-perfect and the codebase clean as it scales.
+- **Test where users actually are.** Cross-browser checks on Chrome, Firefox, Safari, and Edge catch the things a single dev machine never will.
+- **Performance is part of the design.** Lazy loading and render optimization keep the experience fast — a 30% load-time improvement is a feature, not a footnote.
+
+Pixel-perfect isn't pixel-pushing. It's building the right abstractions so the design holds up everywhere.
