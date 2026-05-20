@@ -1,12 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Marquee } from "@/components/motion/marquee";
+import { FilmRoll } from "./film-roll";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const NAME = "PINAL PATEL";
-const REVEAL_AT_MS = 2600; // cover beats finish; wipe + hero handoff begins
-const FONTS_CAP_MS = 800; // max wait for Geist before showing the name
+const REVEAL_AT_MS = 1000;
+const FONTS_CAP_MS = 200;
 
 type Props = { onReveal: () => void; onDone: () => void };
 
@@ -43,9 +43,9 @@ export function Preloader({ onReveal, onDone }: Props) {
       aria-hidden="true"
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden text-ink"
       style={{ background: "var(--bg)" }}
-      initial={{ clipPath: "inset(0 0 0% 0)" }}
-      animate={{ clipPath: wipe ? "inset(0 0 100% 0)" : "inset(0 0 0% 0)" }}
-      transition={{ duration: 0.6, ease: EASE }}
+      initial={{ opacity: 1 }}
+      animate={{ opacity: wipe ? 0 : 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
       onAnimationComplete={() => {
         if (wipe) onDone();
       }}
@@ -59,13 +59,7 @@ export function Preloader({ onReveal, onDone }: Props) {
         </span>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.08]">
-        <Marquee duration={18}>
-          <span className="font-display font-black leading-none tracking-[-0.04em] text-[18vw]">
-            PINAL PATEL —
-          </span>
-        </Marquee>
-      </div>
+      <FilmRoll running={!wipe} />
 
       <h2 className="relative font-display font-black leading-[0.9] tracking-[-0.04em] text-[clamp(40px,10vw,160px)]">
         {chars.map((c, i) => (
@@ -74,7 +68,7 @@ export function Preloader({ onReveal, onDone }: Props) {
             className="inline-block whitespace-pre"
             initial={{ y: "110%", opacity: 0 }}
             animate={nameGo ? { y: 0, opacity: 1 } : { y: "110%", opacity: 0 }}
-            transition={{ duration: 0.6, delay: i * 0.04, ease: EASE }}
+            transition={{ duration: 0.4, delay: i * 0.025, ease: EASE }}
           >
             {c}
           </motion.span>
@@ -85,7 +79,7 @@ export function Preloader({ onReveal, onDone }: Props) {
         className="relative mt-6 h-1 w-[clamp(120px,18vw,260px)] origin-left bg-accent"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: nameGo ? 1 : 0 }}
-        transition={{ duration: 0.5, delay: 0.5, ease: EASE }}
+        transition={{ duration: 0.4, delay: 0.3, ease: EASE }}
       />
     </motion.div>
   );
