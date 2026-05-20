@@ -7,18 +7,18 @@ export function Hero() {
       <Reveal delay={0}>
         <div className="font-mono text-xs uppercase tracking-widest text-ink-dim">
           <span className="inline-block h-2 w-2 rounded-full bg-accent mr-2" />
-          Frontend Developer · Ahmedabad, India
+          Software Developer · Ahmedabad, India
         </div>
       </Reveal>
       <KineticText
-        text="FRONTEND DEVELOPER."
+        text="SOFTWARE DEVELOPER."
         as="h1"
         className="mt-8 font-display font-black leading-[0.9] tracking-[-0.04em] text-[clamp(44px,12vw,200px)]"
         stagger={0.04}
       />
       <Reveal delay={0.8}>
         <p className="mt-10 max-w-xl font-body text-lg text-ink-dim">
-          I build user-friendly, responsive interfaces with React, Next.js, and React Native — turning high-fidelity designs into pixel-perfect, fast experiences.
+          I build high-performance backend systems, AI-powered features, and full-stack applications — from scalable APIs and real-time queues to LLM integrations and agentic workflows.
         </p>
       </Reveal>
     </section>

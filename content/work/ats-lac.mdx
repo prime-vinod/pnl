@@ -1,0 +1,54 @@
+---
+title: ATS LAC — Applicant Tracking System
+client: PrimeApps Infotech
+year: 2023
+role: Backend Developer
+tags: [api, backend, ai]
+cover: /work/sportsgrid-mobile/cover.jpg
+featured: true
+order: 4
+---
+
+## Overview
+ATS LAC is a full applicant tracking system built to automate candidate sourcing, job matching, resume parsing, and hiring workflows. I built the backend and API layer — from authentication and job scraping to AI-powered resume processing and Monday.com integrations.
+
+<Stats items={[
+  { label: "Stack", value: "Payload CMS + Next.js" },
+  { label: "Auth", value: "JWT + RBAC" },
+  { label: "AI", value: "ChatGPT + vLLM" },
+  { label: "Integrations", value: "Monday.com · Merge API" }
+]} />
+
+## What I built
+
+**Authentication & Access Control**
+- Implemented JWT-based token authentication with fine-grained role-based access control (RBAC) across all API endpoints and user flows.
+- Built admin, employer, and candidate role separation with collection-level and endpoint-level access guards.
+
+**Job Board & Scraper**
+- Built a job scraper using the Zenrow API — two scrapers: a company-based scraper that finds and extracts open listings from employer sites, and a keyword scraper that searches across job boards by skill/title combination.
+- Implemented deduplication and normalization logic so scraped jobs merge cleanly into the internal job board without duplicates.
+- Built a `JobScraper` collection with scrape job metadata, status tracking, and manual re-trigger support.
+- Developed job listing APIs with advanced filtering — by company, pipeline stage, applied status, custom properties — with pagination and preferred jobs bookmarking.
+
+**AI-Powered Resume Processing**
+- Developed an AI PDF resume parser using ChatGPT: upload a candidate resume, extract structured profile data (name, skills, experience, education), match to a target company context, and auto-create a job application record — reducing sourcing time from ~15 minutes per profile to under 30 seconds.
+- Built a bulk resume log system tracking multi-resume upload sessions, parse status, and match outcomes.
+- Implemented an AI candidate scoring endpoint: given a job listing, score all applicants by relevance using LLM evaluation of skill alignment and experience match.
+
+**Candidate Management**
+- Built candidate resume storage with two schemas — structured `CandidateResume` (extracted data) and raw `CandidateCvResume` (original file reference) — supporting both AI-parsed and manually entered profiles.
+- Implemented applied jobs tracking with status workflow, shortlisting, and removal of candidate references on deletion.
+- Built an interview URL update endpoint integrated with Monday.com: when an interview is scheduled, the Monday.com item is updated with the video call URL, and a Slack notification is dispatched to the hiring team.
+
+**Integrations**
+- Integrated Merge API for external ATS synchronization — linking external accounts, pulling jobs/candidates/applications via webhook, mapping external fields to internal schema, and syncing user records between ATS and CRM contact data.
+- Built `syncAtsUser` and `syncAtsUserToCrmContact` endpoints to keep ATS applicant records in sync with CRM contact records across the platform.
+- Implemented MCP chat integration (`ChatMcp` collection) to expose ATS data to AI agents via the shared MCP server.
+
+**Company & User Management**
+- Built company profile APIs with single-company retrieval, advanced filter support, and LAC company type filtering.
+- Implemented a candidate-without-interview-count analytics endpoint for recruiter dashboards.
+- Built LMS-ATS user bridging endpoint to surface LMS-enrolled users within the ATS for program-to-job pathway tracking.
+
+<Callout>The AI resume parser + auto-apply flow cut manual candidate creation from ~15 minutes per profile to under 30 seconds — and the job scraper fills the board automatically, eliminating copy-paste data entry entirely.</Callout>

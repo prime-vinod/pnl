@@ -17,7 +17,7 @@ export function brandedOG(title: string) {
         }}
       >
         <div style={{ fontSize: 18, letterSpacing: 4, textTransform: "uppercase", color: "#888" }}>
-          Pinal Patel
+          Vinod Suthar
         </div>
         <div style={{ fontSize: 96, fontWeight: 900, lineHeight: 0.95, letterSpacing: "-0.04em" }}>
           {title}

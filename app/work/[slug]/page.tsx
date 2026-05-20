@@ -36,7 +36,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         "@context": "https://schema.org",
         "@type": "CreativeWork",
         name: work.title,
-        creator: "Pinal Patel",
+        creator: "Vinod Suthar",
         datePublished: `${work.year}-01-01`,
       }} />
       <nav aria-label="Next project" className="border-t border-line px-[5vw] py-16">

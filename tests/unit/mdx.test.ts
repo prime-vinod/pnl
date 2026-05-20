@@ -5,7 +5,7 @@ describe("mdx loader", () => {
   it("loads work entries sorted by order then year desc", async () => {
     const work = await getAllWork();
     expect(work.length).toBeGreaterThanOrEqual(2);
-    expect(work[0]?.slug).toBe("sportsgrid-web");
+    expect(work[0]?.slug).toBe("crm-platform");
   });
 
   it("loads posts sorted by date desc", async () => {

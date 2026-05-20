@@ -1,0 +1,31 @@
+---
+title: SportsGrid — Backend Platform
+client: PrimeApps Infotech
+year: 2024
+role: Backend Developer
+tags: [api, backend, ai]
+cover: /work/sportsgrid-web/cover.jpg
+featured: true
+order: 3
+---
+
+## Overview
+SportsGrid is a live sports fantasy and streaming platform serving real-time data across web and mobile. I owned the backend — building and maintaining the API layer, data pipelines, cron infrastructure, and AI-powered content automation.
+
+<Stats items={[
+  { label: "Stack", value: "Node.js + Next.js" },
+  { label: "Data APIs", value: "SportsRadar" },
+  { label: "Automation", value: "ChatGPT" },
+  { label: "Monitoring", value: "Custom Tool" }
+]} />
+
+## What I built
+- Designed and implemented RESTful APIs consumed by the Next.js frontend and React Native mobile app — handling sports data, user management, and content scheduling.
+- Integrated SportsRadar and SportsData third-party APIs for live scores, player stats, and game schedules; normalized and stored data with configured cron jobs for continuous database sync.
+- Built a custom cron monitoring tool to track job health, surface failures in real time, and allow manual re-triggers — eliminating silent failures in the data pipeline.
+- Automated AI-driven sports episode creation: used ChatGPT to generate episode titles and descriptions from live game data, with a manual editing interface for editorial control.
+- Developed Asana task automation and Slack alerting pipelines so that any backend error or data anomaly raised a task and notified the team instantly.
+- Built image resizing and thumbnail generation tools to handle media assets at scale across the CDN.
+- Designed the admin dashboard for user management, role assignments, login activity, provider management ("where to watch"), and manual cache clearing.
+
+<Callout>The cron monitoring tool reduced undetected pipeline failures from a weekly occurrence to zero — giving the team full visibility into the data pipeline without manual checks.</Callout>

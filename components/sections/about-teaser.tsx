@@ -10,10 +10,10 @@ export function AboutTeaser() {
       <Reveal className="md:col-span-7 md:pt-8" delay={0.1}>
         <h2 className="font-display text-[clamp(36px,5vw,72px)] font-black leading-none tracking-tight">About.</h2>
         <p className="mt-6 text-lg text-ink-dim">
-          I&apos;m Pinal Patel — a web designer and frontend developer with 4+ years building websites and mobile apps at PrimeApps Infotech.
+          I&apos;m Vinod Suthar — a software developer with 3+ years building scalable backend systems, AI-powered platforms, and full-stack products at PrimeApps Infotech, Ahmedabad.
         </p>
         <p className="mt-4 text-lg text-ink-dim">
-          I care about responsive design, reusable components, and shipping things that load fast across every browser and device.
+          I&apos;ve shipped production systems ranging from CRM email clients and BullMQ queue infrastructure to LLM certificate verification, RAG pipelines, MCP servers, ATS job scrapers, and no-code website builders — all at enterprise scale.
         </p>
         <Link href="/about" className="mt-8 inline-block font-mono text-xs uppercase tracking-widest">Read more →</Link>
       </Reveal>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FilmRoll } from "./film-roll";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const NAME = "PINAL PATEL";
+const NAME = "VINOD SUTHAR";
 const REVEAL_AT_MS = 1000;
 const FONTS_CAP_MS = 200;
 

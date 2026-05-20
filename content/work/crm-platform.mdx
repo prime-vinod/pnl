@@ -1,0 +1,78 @@
+---
+title: CRM Platform
+client: PrimeApps Infotech
+year: 2025
+role: Lead Backend Developer
+tags: [backend, api, ai]
+cover: /work/oterra/cover.jpg
+featured: true
+order: 1
+---
+
+## Overview
+A full-featured CRM platform built to manage customer relationships, pipelines, support, and internal operations at enterprise scale. I lead the backend team — architecting core modules across email, permissions, ticketing, meetings, analytics, and infrastructure, while also building the standalone email microservice that powers the email client.
+
+<Stats items={[
+  { label: "Stack", value: "Next.js + Payload CMS" },
+  { label: "Queue", value: "RabbitMQ + BullMQ" },
+  { label: "Cache", value: "Redis" },
+  { label: "Email Service", value: "Standalone Microservice" }
+]} />
+
+## What I built
+
+**Email Client & Mailbox Microservice**
+- Built a standalone Express.js + MongoDB email microservice with a unified provider abstraction layer — supporting Gmail (Google OAuth), Outlook (Microsoft Graph API), and IMAP for custom domains under a single interface.
+- Implemented a `TokenManager` class with proactive token refresh (refreshes before expiry to avoid API failures), distributed lock-based refresh to prevent concurrent refresh races, and an `executeWithAutoRetry` pattern that re-authenticates transparently on token errors.
+- Built BullMQ-based webhook event queuing: incoming Gmail/Outlook push notifications are enqueued and processed asynchronously by a dedicated worker, decoupling webhook handling from event processing.
+- Implemented Outlook Calendar integration via Microsoft Graph API — calendar event change webhooks, case-based event type handling, and cached provider instances to reduce latency.
+- Built an admin dashboard for token health monitoring — visibility into OAuth token states, manual refresh triggers, and expired account detection.
+
+**Permissions & Access Control**
+- Designed and built the Permission Access System entirely from scratch: scope + action-based model with module-level toggles, field-level restrictions, and configurable access per user or team.
+- Built a Teams module with full CRUD including nested teams, bulk move/delete, search across nested structures, and team name uniqueness validation at all nesting levels.
+- Implemented a Permission Sets module: create, edit, delete, view-only scope with centralized key management for permission variable references across the frontend.
+- Built Redis-based permission caching with a custom cache key strategy, 30-second TTL, and super admin bypass logic — with a fallback in-memory cache layer when Redis is unavailable.
+
+**Sales & Pipeline**
+- Implemented Pipeline and Stages with drag-and-drop stage management, deal tracking, conversion tracking, and saved views for custom list configurations.
+- Built a CRM Companies collection split — extracted `crm_companies` as a dedicated collection for lead-linked records, separating them from the main company namespace and updating all dependent API endpoints.
+- Developed an Associations module linking contacts, companies, deals, and tickets with configurable relationship types; implemented soft-delete restore that correctly updates all cross-entity associations.
+
+**Meetings & Calendar**
+- Implemented a Meeting Scheduler module with calendar configuration, meeting creation, participant management, and recording link storage integrated directly on contact and deal records.
+- Built a BigBlueButton video conferencing integration — room lifecycle management, participant control, and recording link retrieval exposed via dedicated CRM endpoints.
+
+**Transcribes Analytics Dashboard**
+- Built a Transcribes Analytics Dashboard: paginated data fetching with configurable page size, API timeout handling with error boundary isolation, and visualization components for transcript activity over time.
+- Implemented a Transcribes collection with custom analytics endpoint, processing hooks, and default value initialization.
+
+**Customer Support & Ticketing**
+- Built a Ticket module with creation, assignment, priority, SLA tracking, comments, and configurable chart options per ticket view.
+- Developed Helpdesk and Customer Support Portal modules for team routing, workload distribution, and portal-based support access.
+- Built a Task Queues system with recurring task actions, team-based task assignments, and task comment threading.
+
+**Infrastructure & Performance**
+- Integrated RabbitMQ and BullMQ for durable background job processing — powering email sync, webhook handling, notification dispatch, report generation, and scheduled workflows.
+- Implemented Redis caching across high-traffic endpoints; added in-memory cache as a fallback so the application remains functional during Redis downtime.
+- Led database performance work: compound indexes for complex query patterns, N+1 elimination, aggregation pipeline optimization, and tenant-scoped data isolation across all collections.
+
+**Marketing & AI**
+- Built a Marketing Emails module: audience segmentation using the Segments collection, template selection, campaign scheduling, and delivery tracking with email open/click logging via TrackingEmails and TrackingURLs collections.
+- Integrated OpenClaw AI agent with permission-aware access control — users can query CRM data, trigger workflows, and get insights through natural language with their permission scope enforced.
+
+**Website Builder**
+- Built a no-code website builder inside the Marketing module, powered by [Destack](https://www.getdestack.com/) — a drag-and-drop page builder with component-level inline editing.
+- Users compose marketing pages by dragging pre-built sections (Hero, Banner, CTA, FAQ, Pricing, Newsletter, Testimonials, Stats, Blog, Team) from two theme families — Flowbite and Flowrift — and editing content directly on the canvas.
+- Implemented a custom page rendering engine that hydrates saved page JSON into live React component trees, supporting both static sections and data-driven dynamic components.
+- Built dynamic components that pull live CRM data into published pages: **Events/Calendar** (program schedules, registrations), **Job Listings** (open positions with apply flow), **Program Listings** (courses, cohorts with enrollment), and **Company Profiles** (multi-tenant directory).
+- Developed full page lifecycle APIs (create, update, publish, unpublish) so each tenant can independently manage their public marketing site without touching code.
+- Architected multi-tenant site isolation — each company gets a scoped publishing context, ensuring content, domains, and data remain cleanly separated across tenants.
+
+**Security**
+- Led security enhancement initiatives: tenant data isolation, input validation hardening, rate limiting, audit logging, and session management improvements across the platform.
+- Normalized email addresses in user beforeValidate hooks to prevent duplicate account creation from case variations.
+
+<Callout>The permission system replaced a hardcoded role model — giving customers full control over access without engineering involvement, and reducing permission-related support tickets to near zero.</Callout>
+
+<Callout>The website builder eliminated the need for external landing page tools — marketing teams now build, publish, and iterate on pages directly inside the CRM, with live CRM data (jobs, events, programs) surfaced automatically.</Callout>

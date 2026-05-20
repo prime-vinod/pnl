@@ -1,6 +1,6 @@
 import { Marquee } from "@/components/motion/marquee";
 
-const items = ["React.js", "Next.js", "React Native", "TypeScript", "Tailwind CSS", "Material UI", "Node.js", "Figma"];
+const items = ["NestJS", "Node.js", "TypeScript", "MongoDB", "Redis", "RabbitMQ", "Next.js", "React", "MCP Server", "LLM / RAG", "BullMQ", "Payload CMS", "Stripe", "AWS SES", "Merge API"];
 
 export function ClientsStrip() {
   return (

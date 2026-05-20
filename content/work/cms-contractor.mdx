@@ -1,0 +1,76 @@
+---
+title: CMS — Contractor Management System
+client: PrimeApps Infotech
+year: 2024
+role: Backend Developer · AI Integration Lead
+tags: [backend, ai, api]
+cover: /work/dcebl/cover.jpg
+featured: true
+order: 2
+---
+
+## Overview
+A comprehensive contractor and vendor management platform built for enterprises to onboard contractors, manage certifications, automate compliance workflows, and run field operations. I led backend development and AI integration — building everything from certificate verification with LLM to an agentic chatbot, MCP server, cron infrastructure, and a full compliance document pipeline.
+
+<Stats items={[
+  { label: "Stack", value: "Payload CMS + Next.js" },
+  { label: "AI", value: "LLM + RAG + vLLM" },
+  { label: "Transport", value: "SSE + HTTP Stream" },
+  { label: "Payment", value: "Stripe" }
+]} />
+
+## What I built
+
+**Vendor & Contractor Management**
+- Built a complete Vendor module covering invitation flow, crew management, vendor types, transfer requests, and subsidiary invitation tracking — supporting multi-level contractor hierarchies.
+- Implemented a vendor onboarding percentage calculator that refreshes dynamically as vendors complete profile steps, certifications, and compliance documents.
+- Developed a custom properties engine for contractors — admins define arbitrary fields per entity type at runtime, values are stored and queried without schema changes.
+- Built Workorder management for field operations: desktop and mobile APIs for workorder listing, detail retrieval, task management, and completion tracking; SSO-based attendance logging for field workers.
+
+**Compliance Documents (I-9, W-9, E-Verify)**
+- Built I-9 form processing with photo capture, bulk status retrieval, and background check status integration.
+- Implemented W-9 workflows: invitation-based submission, form storage, list by company, and automated notifications to administrators on submission.
+- Integrated E-Verify with status tracking and background check status APIs for contractor compliance.
+- Integrated Checkr for background check initiation, candidate record management, and status webhooks.
+
+**Certificate Management & AI Verification**
+- Built a certificate upload and verification pipeline: uploaded certificates are analyzed by a vLLM API that extracts structured metadata (issuer, expiry, holder name, certification type) and validates authenticity against known patterns.
+- Implemented a RAG (Retrieval-Augmented Generation) knowledge base to ground LLM verification against program-specific certification requirements, reducing hallucination and improving match accuracy.
+- Built bulk certificate processing: upload hundreds of certificates at once, automatically match each to the correct user and program, verify compliance, and attach to respective program records — replacing a fully manual review process.
+- Developed certificate expiry cron jobs (user certificates, vendor certificates, team safety holds) that monitor expiration dates and trigger automated email/notification workflows before and at expiry.
+
+**AI Agent, Chatbot & MCP Server**
+- Built an AI agent with voice and chat interfaces: contractors can upload certificates, check certification requirements, and complete submissions entirely through conversation.
+- Implemented an MCP (Model Context Protocol) server as a standalone Express.js service supporting both SSE (Server-Sent Events) and HTTP streaming transports — exposing platform tools to AI agents for structured, bi-directional interaction.
+- Built a comprehensive MCP tool library covering CMS (task management, vendor operations, document workflows), ATS (applications, jobs, employers), and LMS (competency tracking, user management) domains.
+- Integrated NullClaw and OpenClaw AI agents on the frontend with permission-aware visibility — restricting agent access based on user role and company context.
+- Implemented vLLM agent service alongside OpenClaw for certificate verification tasks requiring specialized model routing.
+
+**Form Builder & Email Templates**
+- Built a dynamic Form Builder module: admins create fully custom forms without code — configuring field types, validation rules, conditional logic rules, and form tracking at runtime.
+- Implemented a Survey Form module with submission collection, result storage, and analytics.
+- Developed an Email Templates module with rich editor, variable substitution, default template management, and preview rendering for transactional and notification emails.
+- Built SES (AWS Simple Email Service) integration: configuration management, webhook handling for delivery events, and email sending with template rendering.
+
+**Site Safety Observations**
+- Implemented a Site Safety Observation module for field teams: create observations, capture photos, update status, and maintain an audit log of on-site safety events.
+
+**Cron Infrastructure (Standalone Cron Server)**
+- Built and maintained a standalone cron server handling: certificate expiry notifications, bulk user imports, vendor imports, LMS sync, QuickBooks token refresh, and marketing email campaigns.
+- Implemented a BullMQ-based job queue infrastructure with dedicated workers for: bulk uploads, email delivery, marketing emails, SMS, workflow execution, rate card tasks, SES event processing, and delay queues.
+- Built a job scraper integration using Zenrow API — scraping job listings by keyword and company, deduplicating, and syncing to the ATS job board.
+
+**Permissions & Access Control (CMS Frontend)**
+- Implemented the Permission Sets management interface: full CRUD, view-only scope toggle, SSO access control, and team management tabs on the admin permissions page.
+- Built permission fetching with pagination, sorting, search, and metadata display (created/updated by).
+- Applied permission-based navigation using tooltip indicators in the sidebar for restricted modules.
+
+**Integrations & Infrastructure**
+- Integrated Stripe for company onboarding: subscription creation via OTP-verified flow, Stripe webhook handling, payment status management, and credit purchase history.
+- Built a Merge API integration for ATS data sync — linked account management, custom field mappings, jobs/candidates/applications webhooks and sync pipelines.
+- Implemented Process Flows for multi-step business logic: flow creation, tracking across steps, completion state management, and criteria-based enrollment triggers.
+- Built AI workflow agents executing multi-step business logic (eligibility checks, approvals, notifications) triggered by platform events, with workflow queue processing and delay queue handling.
+
+<Callout>The bulk certificate AI pipeline replaced a team of reviewers doing manual matching — processing hundreds of documents in minutes with structured verification output per record.</Callout>
+
+<Callout>The MCP server makes the platform's entire data layer accessible to AI agents via standard protocol — any AI tool that speaks MCP can query vendors, manage tasks, or trigger workflows without custom API integration.</Callout>

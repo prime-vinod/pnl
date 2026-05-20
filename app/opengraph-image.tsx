@@ -21,7 +21,7 @@ export default function og() {
         }}
       >
         <div style={{ fontSize: 18, letterSpacing: 4, textTransform: "uppercase", color: "#888" }}>
-          Pinal Patel
+          Vinod Suthar
         </div>
         <div
           style={{
@@ -33,7 +33,7 @@ export default function og() {
             letterSpacing: "-0.04em",
           }}
         >
-          <div style={{ display: "flex" }}>FRONTEND</div>
+          <div style={{ display: "flex" }}>SOFTWARE</div>
           <div style={{ display: "flex" }}>DEVELOPER.</div>
         </div>
       </div>

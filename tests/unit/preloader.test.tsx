@@ -7,6 +7,6 @@ describe("Preloader", () => {
     render(<Preloader onReveal={vi.fn()} onDone={vi.fn()} />);
     const overlay = screen.getByTestId("intro-preloader");
     expect(overlay).toHaveAttribute("aria-hidden", "true");
-    expect(overlay.textContent).toContain("PINAL PATEL");
+    expect(overlay.textContent).toContain("VINOD SUTHAR");
   });
 });
