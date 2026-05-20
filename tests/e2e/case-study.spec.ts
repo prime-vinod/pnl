@@ -1,5 +1,9 @@
 import { test, expect } from "@playwright/test";
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => window.sessionStorage.setItem("intro-seen", "1"));
+});
+
 test("navigates to case study and renders MDX", async ({ page }) => {
   await page.goto("/work");
   await page.getByRole("link", { name: /SportsGrid Web/ }).first().click();

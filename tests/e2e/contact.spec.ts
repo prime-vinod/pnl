@@ -1,5 +1,9 @@
 import { test, expect } from "@playwright/test";
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => window.sessionStorage.setItem("intro-seen", "1"));
+});
+
 test("contact form shows status without secrets", async ({ page }) => {
   await page.goto("/about#contact");
   await page.getByLabel("Name").fill("Vinod");

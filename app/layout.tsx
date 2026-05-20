@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/sections/site-header";
 import { SiteFooter } from "@/components/sections/site-footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { IntroProvider } from "@/components/motion/intro/intro-provider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap", weight: ["400", "500", "900"] });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", weight: ["400", "500"] });
@@ -38,9 +39,11 @@ export default function RootLayout({
           <LenisProvider />
           <Cursor />
           <ScrollProgress />
-          <SiteHeader />
-          <main id="main">{children}</main>
-          <SiteFooter />
+          <IntroProvider>
+            <SiteHeader />
+            <main id="main">{children}</main>
+            <SiteFooter />
+          </IntroProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

@@ -1,6 +1,7 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
 import type { JSX } from "react";
+import { useIntro } from "@/components/motion/intro/intro-provider";
 
 type Props = {
   text: string;
@@ -11,6 +12,7 @@ type Props = {
 
 export function KineticText({ text, as = "h1", stagger = 0.04, className }: Props) {
   const reduced = useReducedMotion();
+  const { ready } = useIntro();
   const Tag = motion[as as "h1"];
   if (reduced) return <Tag className={className}>{text}</Tag>;
   const words = text.split(" ");
@@ -28,7 +30,7 @@ export function KineticText({ text, as = "h1", stagger = 0.04, className }: Prop
                   <motion.span
                     key={i}
                     initial={{ y: "110%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
+                    animate={ready ? { y: 0, opacity: 1 } : { y: "110%", opacity: 0 }}
                     transition={{ duration: 0.6, delay: i * stagger, ease: [0.22, 1, 0.36, 1] }}
                     className="inline-block"
                   >

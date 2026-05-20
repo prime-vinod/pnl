@@ -33,3 +33,8 @@ if (typeof window !== "undefined" && !window.matchMedia) {
     dispatchEvent: vi.fn(),
   }));
 }
+
+// jsdom does not implement scrollTo; the IntroProvider calls it when locking scroll.
+if (typeof window !== "undefined") {
+  window.scrollTo = vi.fn();
+}
