@@ -68,6 +68,7 @@ A full-featured CRM platform built to manage customer relationships, pipelines, 
 - Built dynamic components that pull live CRM data into published pages: **Events/Calendar** (program schedules, registrations), **Job Listings** (open positions with apply flow), **Program Listings** (courses, cohorts with enrollment), and **Company Profiles** (multi-tenant directory).
 - Developed full page lifecycle APIs (create, update, publish, unpublish) so each tenant can independently manage their public marketing site without touching code.
 - Architected multi-tenant site isolation — each company gets a scoped publishing context, ensuring content, domains, and data remain cleanly separated across tenants.
+- Built the public-facing rendering layer for the multi-tenant marketing sites: a runtime Tailwind template renderer that hydrates saved page JSON into live React component trees, plus the dynamic data-driven sections — Events/Calendar (program schedules with apply/registration links), Program Listings, and Faculty pages — that surface live CRM data on each tenant's published site.
 
 **Security**
 - Led security enhancement initiatives: tenant data isolation, input validation hardening, rate limiting, audit logging, and session management improvements across the platform.

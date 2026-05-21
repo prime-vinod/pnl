@@ -1,0 +1,52 @@
+---
+title: RabbitMQ Consumer Service
+client: PrimeApps Infotech
+year: 2026
+role: Backend Developer
+tags: [backend, api]
+cover: /work/rabbitmq/cover.jpg
+featured: false
+order: 5
+---
+
+## Overview
+A dedicated NestJS consumer service that processes RabbitMQ events published by the rest of the ecosystem — CMS, CRM, LMS — and runs the slow, failure-prone work off the request path. It's a pure consumer: it never publishes, it just listens, validates, executes, and acknowledges. I built it from an empty scaffold into the queue backbone that absorbs the platform's background workload.
+
+<Stats items={[
+  { label: "Stack", value: "NestJS 11" },
+  { label: "Transport", value: "RabbitMQ · amqplib" },
+  { label: "Data", value: "Payload SDK + Mongoose" },
+  { label: "Deploy", value: "PM2 + Docker" }
+]} />
+
+## What I built
+
+**BaseConsumer — one message lifecycle for every event**
+- Built a `BaseConsumer` that every feature consumer extends, so the message lifecycle is implemented once: parse the message, unwrap the NestJS `{ pattern, data }` envelope, `plainToInstance` into a DTO, `validateOrReject` with class-validator decorators, run the handler, then ACK.
+- Implemented failure handling as a first-class path: transient failures retry with exponential backoff; exhausted or permanently-bad messages route to a dead-letter queue instead of poison-looping the consumer.
+- Added a `NonRetryableError` type so a handler can declare "this will never succeed" (malformed payload, missing record) — the message skips retry, goes to DLQ, and fires a Slack alert immediately.
+- Hardened the parser against malformed JSON: bad frames are logged with context and dead-lettered rather than crashing the worker.
+
+**Certificate-verification consumer**
+- Built the consumer that takes the contractor certificate-verification workload off the CMS request path — uploads no longer block on parsing and verification.
+- Converts uploaded certificate PDFs to images with `pdf2pic`, uploads the rendered pages to S3, and persists the result back through the Payload SDK.
+- Upserts a verification record and creates an activity task per certificate, fetches program "system knowledge" to ground the verification, and handles certificates with no expiration date as an explicit case rather than a silent null.
+
+**Email consumer**
+- Built an `email.send` consumer that handles outbound mail from any source in the ecosystem behind a single event, dispatching via Nodemailer over SMTP.
+
+**Global service layer**
+- Built `PayloadService` (extends the Payload SDK directly, admin auth via `users API-Key` header) as the single client for all Payload reads/writes.
+- Built `S3Service` for file uploads with caller-owned paths, `EmailSenderService` for SMTP, and `SlackNotificationService` for failure alerts — all registered `@Global()` so feature modules inject them without re-importing.
+
+**Layered architecture**
+- Structured the service into three tiers with a strict one-direction dependency rule: feature `modules/` may use `core/` (BaseConsumer, notifications, logging) and `common/` (external clients, error types), but core and common never reach back into modules.
+- Each feature module is a self-contained `consumer + service + DTOs` unit, so a new event type is a new folder, not a change to shared code.
+
+**Operations**
+- Set up a hybrid app: the RabbitMQ microservice and an HTTP `GET /health` endpoint run in one process for liveness monitoring.
+- Built the deploy path: PM2 ecosystem config, a Dockerfile (with `.npmrc` wired into both builder and runner stages), and a `deploy.sh` with dynamic target-branch detection and structured logging. Enforced Node 22 across dev and CI, and added a request-logging interceptor and a configurable retry utility.
+
+<Callout>Moving certificate verification and outbound email onto durable queues means a slow LLM verification or a flaky SMTP server can no longer stall a user's upload — the request returns instantly, and the work retries, dead-letters, or alerts on its own.</Callout>
+
+<Callout>The BaseConsumer turns "handle a queue message correctly" — validate, ACK, retry, dead-letter, alert — into a solved problem inherited by every consumer, so a new event type ships as pure business logic.</Callout>
