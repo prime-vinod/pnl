@@ -10,6 +10,6 @@ describe("mdx loader", () => {
 
   it("loads posts sorted by date desc", async () => {
     const posts = await getAllPosts();
-    expect(posts[0]?.slug).toBe("figma-to-react");
+    expect(posts[0]?.slug).toBe("layered-modular-architecture");
   });
 });

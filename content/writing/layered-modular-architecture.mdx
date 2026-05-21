@@ -1,0 +1,43 @@
+---
+title: How I structure backend systems — modular and layered
+date: "2026-05-21"
+tags: [architecture, backend]
+description: Most backend messes come from blurry boundaries, not bad code. Here's the modular, layered structure I lean on to keep systems maintainable as they grow.
+---
+
+Most backend messes I've inherited weren't caused by bad code. They were caused by blurry boundaries — business logic leaking into the request layer, shared helpers reaching back into features, one module quietly importing another's internals. The code worked. It just couldn't be changed safely.
+
+The structure I keep coming back to is **modular and layered**. It's the backbone of the systems I've built at scale — CRM platforms, queue-driven services, AI agent pipelines — and it holds up because the rules are boring and strict.
+
+## Three layers, one direction
+
+I split everything into three tiers:
+
+- **Feature modules** — the business logic. One folder per domain (`users`, `billing`, `email`), each self-contained.
+- **Core** — infrastructure the whole app stands on: base classes, logging, error handling, notifications.
+- **Common** — business-agnostic shared utilities: external service clients, error types, helpers.
+
+The one rule that makes it work: **dependencies only point inward.** Modules may use core and common. Core and common never reach back into modules. The moment that arrow reverses, you've traded a clean graph for a ball of mud.
+
+## Layers inside a module
+
+Within a feature, each layer has one job — and only talks to the next one down:
+
+- **Controller / handler** is the edge. Receive the request or message, delegate, respond. No business rules here.
+- **Service** owns the actual logic. It's the only place that coordinates the work.
+- **Repository / data layer** is the only thing that touches the database. Services ask it for data; they don't write queries inline.
+- **DTO / model** defines the shape and validates it at the edge, so bad input never reaches the service.
+
+Note there's no "view" — this is a backend. The response (JSON, a queue ack) isn't a render layer, so I don't pretend it's MVC. It's plain layering: edge → logic → data.
+
+## Orchestrators for the messy flows
+
+When a flow gets complex — fetch data, call an external API, persist, fire side effects — I pull it into an **orchestrator** service. The controller stays a one-liner, the orchestrator sequences the steps, and each step stays testable in isolation. It keeps services from swelling into thousand-line god-objects.
+
+## Why bother
+
+- **Testability.** Thin edges and isolated services mean you test logic without standing up the world.
+- **Swap-ability.** Change a database client or a queue broker by touching one layer, not fifty files.
+- **Onboarding.** A new dev can guess where code lives, because the structure _is_ the documentation.
+
+Architecture isn't diagrams. It's the set of constraints that make the next change cheap. Get the boundaries right and the rest of the codebase mostly takes care of itself.
