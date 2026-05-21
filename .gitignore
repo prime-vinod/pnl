@@ -47,3 +47,6 @@ next-env.d.ts
 .superpowers/
 .env*.local
 .vscode
+
+# large video source (compressed copy lives in public/)
+/hero-bg-source.mp4

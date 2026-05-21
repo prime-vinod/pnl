@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
 import { Link } from "@/components/ui/link";
 
@@ -5,7 +6,15 @@ export function AboutTeaser() {
   return (
     <section className="grid grid-cols-1 gap-12 px-[5vw] py-[12vh] md:grid-cols-12">
       <Reveal className="md:col-span-5">
-        <div className="aspect-square w-full bg-surface" />
+        <div className="overflow-hidden rounded-lg bg-surface">
+          <Image
+            src="/portrait.jpg"
+            alt="Vinod Suthar"
+            width={576}
+            height={1024}
+            className="aspect-square w-full object-cover object-top"
+          />
+        </div>
       </Reveal>
       <Reveal className="md:col-span-7 md:pt-8" delay={0.1}>
         <h2 className="font-display text-[clamp(36px,5vw,72px)] font-black leading-none tracking-tight">About.</h2>

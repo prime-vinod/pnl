@@ -1,19 +1,12 @@
 import { KineticText } from "@/components/motion/kinetic-text";
 import { Reveal } from "@/components/motion/reveal";
+import { HeroVideo } from "@/components/sections/hero-video";
 
 export function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-[5vw] py-[12vh]">
       {/* Video background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-        src="/hero-bg.mp4"
-      />
+      <HeroVideo />
       {/* Dark overlay so text stays readable */}
       <div className="pointer-events-none absolute inset-0 bg-bg/90" />
 
