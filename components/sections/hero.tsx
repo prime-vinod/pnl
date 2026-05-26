@@ -4,11 +4,11 @@ import { HeroVideo } from "@/components/sections/hero-video";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-[5vw] py-[12vh]">
+    <section className="relative flex min-h-dvh flex-col justify-center overflow-hidden px-[5vw] py-[12vh]">
       {/* Video background */}
       <HeroVideo />
       {/* Dark overlay so text stays readable */}
-      <div className="pointer-events-none absolute inset-0 bg-bg/90" />
+      <div className="pointer-events-none absolute inset-0 bg-bg/80" />
 
       {/* Content above video */}
       <div className="relative">
