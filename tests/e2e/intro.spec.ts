@@ -4,7 +4,7 @@ import AxeBuilder from "@axe-core/playwright";
 test("first visit shows the intro, then reveals the hero", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("intro-preloader")).toBeVisible();
-  await expect(page.getByRole("heading", { name: /SOFTWARE DEVELOPER/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /SOFTWARE ENGINEER/i })).toBeVisible();
   await expect(page.getByTestId("intro-preloader")).toBeHidden({ timeout: 6000 });
 });
 
@@ -26,12 +26,12 @@ test("intro is skipped on a same-session reload", async ({ page }) => {
   await expect(page.getByTestId("intro-preloader")).toBeHidden({ timeout: 6000 });
   await page.reload();
   await expect(page.getByTestId("intro-preloader")).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: /SOFTWARE DEVELOPER/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /SOFTWARE ENGINEER/i })).toBeVisible();
 });
 
 test("intro is skipped under reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.getByTestId("intro-preloader")).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: /SOFTWARE DEVELOPER/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /SOFTWARE ENGINEER/i })).toBeVisible();
 });

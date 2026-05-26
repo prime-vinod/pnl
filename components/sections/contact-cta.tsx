@@ -11,6 +11,12 @@ export function ContactCTA() {
         <a href="tel:+918503864833">+91 85038 64833</a>
         <span>Ahmedabad, India</span>
       </div>
+      <div className="mt-6 flex flex-wrap items-center gap-8 font-mono text-xs uppercase tracking-widest text-ink-dim">
+        <a href="https://github.com/vivenn" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/vinod-suthar-04b4262b0" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.youtube.com/@vivenxfilm" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://www.instagram.com/vivenxfilm.io/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
     </section>
   );
 }

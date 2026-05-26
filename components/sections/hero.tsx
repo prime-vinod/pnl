@@ -15,13 +15,13 @@ export function Hero() {
         <Reveal delay={0}>
           <div className="font-mono text-xs uppercase tracking-widest text-ink-dim">
             <span className="inline-block h-2 w-2 rounded-full bg-accent mr-2" />
-            Software Developer · Ahmedabad, India
+            Software Engineer · Ahmedabad, India
           </div>
         </Reveal>
         <KineticText
-          text="SOFTWARE DEVELOPER."
+          text="SOFTWARE ENGINEER."
           as="h1"
-          className="mt-8 font-display font-black leading-[0.9] tracking-[-0.04em] text-[clamp(44px,12vw,200px)]"
+          className="mt-8 max-w-[10ch] font-display font-black leading-[0.9] tracking-[-0.04em] text-[clamp(44px,12vw,200px)]"
           stagger={0.04}
         />
         <Reveal delay={0.8}>

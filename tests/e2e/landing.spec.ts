@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 
 test("landing renders hero + featured work + cta", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: /SOFTWARE DEVELOPER/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /SOFTWARE ENGINEER/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /CRM Platform/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /LET'S BUILD/i })).toBeVisible();
 });

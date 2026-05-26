@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: { default: "Vinod Suthar — Software Developer", template: "%s · Vinod Suthar" },
-  description: "Software developer with 3+ years building high-performance backend systems, AI integrations, and full-stack applications with NestJS, Node.js, and TypeScript.",
+  title: { default: "Vinod Suthar — Software Engineer", template: "%s · Vinod Suthar" },
+  description: "Software engineer with 3+ years building high-performance backend systems, AI integrations, and full-stack applications with NestJS, Node.js, and TypeScript.",
   openGraph: { type: "website", siteName: "Vinod Suthar" },
   twitter: { card: "summary_large_image" },
 };

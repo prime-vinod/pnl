@@ -5,8 +5,8 @@ import { IntroProvider } from "@/components/motion/intro/intro-provider";
 
 describe("KineticText", () => {
   it("renders full text accessibly", () => {
-    render(<KineticText text="SOFTWARE DEVELOPER." />);
-    expect(screen.getByText("SOFTWARE DEVELOPER.")).toBeInTheDocument();
+    render(<KineticText text="SOFTWARE ENGINEER." />);
+    expect(screen.getByText("SOFTWARE ENGINEER.")).toBeInTheDocument();
   });
 
   it("keeps the full text accessible while the intro gates animation", () => {
@@ -14,9 +14,9 @@ describe("KineticText", () => {
     window.sessionStorage.clear();
     render(
       <IntroProvider>
-        <KineticText text="SOFTWARE DEVELOPER." />
+        <KineticText text="SOFTWARE ENGINEER." />
       </IntroProvider>,
     );
-    expect(screen.getAllByText("SOFTWARE DEVELOPER.").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("SOFTWARE ENGINEER.").length).toBeGreaterThan(0);
   });
 });
