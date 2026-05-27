@@ -3,6 +3,7 @@ import { getAllWork } from "@/lib/mdx";
 import { Reveal } from "@/components/motion/reveal";
 import { Link } from "@/components/ui/link";
 import { Tag } from "@/components/ui/tag";
+import { BrowserFrame } from "@/components/ui/browser-frame";
 
 const FEATURED_LIMIT = 4;
 
@@ -26,16 +27,16 @@ export async function FeaturedWork() {
           return (
             <Reveal key={w.slug} className={i % 2 === 0 ? "md:col-span-7" : "md:col-span-5 md:mt-24"} delay={i * 0.05}>
               <Link href={`/work/${w.slug}`} className="group block">
-                <div className="overflow-hidden rounded-lg">
+                <BrowserFrame url={w.url ?? `${w.slug}.app`} className="transition-transform duration-500 group-hover:-translate-y-1">
                   <Image
                     src={w.cover}
                     alt={w.title}
                     width={1600}
                     height={1000}
                     priority={i === 0}
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    className="aspect-[16/10] w-full object-cover"
                   />
-                </div>
+                </BrowserFrame>
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-2 font-mono text-xs uppercase tracking-widest text-ink-dim">
                   <span>
                     <span className="text-ink">{index}</span>

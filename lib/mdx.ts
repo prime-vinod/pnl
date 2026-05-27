@@ -10,6 +10,7 @@ const WorkFrontmatter = z.object({
   role: z.string(),
   tags: z.array(z.string()),
   cover: z.string(),
+  url: z.string().optional(),
   excerpt: z.string().optional(),
   featured: z.boolean().default(false),
   order: z.number().int().default(0),
