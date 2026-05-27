@@ -41,7 +41,7 @@ export async function getAllWork(): Promise<Work[]> {
     const parsed = WorkFrontmatter.parse(data);
     return { ...parsed, slug: file.replace(/\.mdx$/, ""), body: content };
   }));
-  return items.sort((a, b) => a.order - b.order || b.year - a.year);
+  return items.sort((a, b) => b.year - a.year || a.order - b.order);
 }
 
 export async function getWork(slug: string): Promise<Work | null> {
