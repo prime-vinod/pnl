@@ -67,7 +67,7 @@ export function DraggableStrip({ items, speed = 50 }: Props) {
   return (
     <div
       ref={ref}
-      className="cursor-grab touch-pan-y select-none overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden"
+      className="cursor-grab touch-pan-x touch-pan-y select-none overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden"
       style={{ scrollBehavior: "auto" }}
       onPointerDown={(e) => {
         const el = ref.current;
