@@ -3,7 +3,7 @@ import type { Work } from "@/lib/mdx";
 
 export function CaseStudyHeader({ work, views }: { work: Work; views: number }) {
   return (
-    <header className="px-[5vw] pt-[18vh]">
+    <header className="mx-auto max-w-7xl px-[5vw] pt-[18vh]">
       <div className="flex flex-wrap gap-6 font-mono text-xs uppercase tracking-widest text-ink-dim">
         <span>{work.client}</span>
         <span>{work.year}</span>
@@ -14,7 +14,14 @@ export function CaseStudyHeader({ work, views }: { work: Work; views: number }) 
         {work.title}
       </h1>
       <div className="mt-12 overflow-hidden rounded-lg">
-        <Image src={work.cover} alt={work.title} width={1920} height={1080} className="w-full" priority />
+        <Image
+          src={work.cover}
+          alt={work.title}
+          width={1920}
+          height={1080}
+          priority
+          className="aspect-[16/9] w-full object-cover"
+        />
       </div>
     </header>
   );

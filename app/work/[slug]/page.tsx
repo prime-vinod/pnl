@@ -29,8 +29,34 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   return (
     <article>
       <CaseStudyHeader work={work} views={views} />
-      <div className="prose mx-auto max-w-3xl px-[5vw] py-16 text-lg leading-relaxed">
-        <MDX source={work.body} />
+      <div className="mx-auto grid max-w-7xl gap-12 px-[5vw] py-16 lg:grid-cols-12 lg:gap-16">
+        <aside className="lg:col-span-3">
+          <div className="space-y-6 lg:sticky lg:top-24">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Client</div>
+              <div className="mt-1 font-display text-base">{work.client}</div>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Year</div>
+              <div className="mt-1 font-display text-base">{work.year}</div>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Role</div>
+              <div className="mt-1 font-display text-base">{work.role}</div>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Tags</div>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {work.tags.map((t) => (
+                  <span key={t} className="border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-ink-dim">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </aside>
+        <div className="prose lg:col-span-8 lg:col-start-5 lg:-mt-2">
+          <MDX source={work.body} />
+        </div>
       </div>
       <JsonLd data={{
         "@context": "https://schema.org",
