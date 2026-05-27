@@ -13,14 +13,15 @@ export function CaseStudyHeader({ work, views }: { work: Work; views: number }) 
       <h1 className="mt-4 font-display text-[clamp(48px,9vw,140px)] font-black leading-[0.9] tracking-[-0.04em]">
         {work.title}
       </h1>
-      <div className="mt-12 overflow-hidden rounded-lg">
+      <div className="mt-12 overflow-hidden rounded-lg bg-surface">
         <Image
           src={work.cover}
           alt={work.title}
           width={1920}
           height={1080}
           priority
-          className="aspect-[16/9] w-full object-cover"
+          sizes="(min-width: 1280px) 1280px, 100vw"
+          className="h-auto w-full"
         />
       </div>
     </header>
