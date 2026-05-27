@@ -3,9 +3,28 @@ import { JsonLd } from "@/components/ui/json-ld";
 
 export const metadata = { title: "About" };
 
+const skills: { label: string; value: string }[] = [
+  { label: "Languages", value: "TypeScript · JavaScript · PHP · Java · C++" },
+  { label: "Backend & Frameworks", value: "NestJS · Node.js · Express.js · Laravel · REST APIs · GraphQL · System Design & Architecture" },
+  { label: "Databases & Messaging", value: "MongoDB · PostgreSQL · MySQL · Redis (Caching) · RabbitMQ · BullMQ · Prisma ORM · Sequelize · Mongoose" },
+  { label: "AI & MCP", value: "LLM Integration · RAG · AI Agents · MCP Server (SSE + HTTP Streaming) · vLLM · Agentic Workflows · OpenAI · Anthropic SDK · Chatbot & Voice Agent" },
+  { label: "Frontend & Integrations", value: "React.js · Next.js · Payload CMS · Stripe · BigBlueButton · Google OAuth & Gmail API · Microsoft Graph API (Outlook) · IMAP · Merge API · Monday.com · Checkr · AWS SES · AWS S3 · Git · Nginx" },
+  { label: "Education", value: "MCA — LJ College, Ahmedabad · 2022 — BCOM — MLSU, Udaipur · 2018" },
+  { label: "Spoken Languages", value: "English · Hindi · Gujarati" },
+];
+
+const contactLinks = [
+  { label: "Email", href: "mailto:vinodkumar850386@gmail.com", display: "vinodkumar850386@gmail.com" },
+  { label: "Phone", href: "tel:+918503864833", display: "+91 85038 64833" },
+  { label: "GitHub", href: "https://github.com/vivenn", display: "github.com/vivenn", external: true },
+  { label: "LinkedIn", href: "https://linkedin.com/in/vinod-suthar-04b4262b0", display: "linkedin.com/in/vinod-suthar-04b4262b0", external: true },
+  { label: "YouTube", href: "https://www.youtube.com/@vivenxfilm", display: "youtube.com/@vivenxfilm", external: true },
+  { label: "Instagram", href: "https://www.instagram.com/vivenxfilm.io/", display: "instagram.com/vivenxfilm.io", external: true },
+];
+
 export default function AboutPage() {
   return (
-    <article className="mx-auto max-w-3xl px-[5vw] pt-[18vh] pb-[12vh]">
+    <article>
       <JsonLd data={{
         "@context": "https://schema.org",
         "@type": "Person",
@@ -23,74 +42,84 @@ export default function AboutPage() {
           "https://www.instagram.com/vivenxfilm.io/",
         ],
       }} />
-      <h1 className="font-display text-[clamp(48px,9vw,140px)] font-black leading-[0.9] tracking-tight">About.</h1>
 
-      <section className="mt-12 space-y-6 text-lg text-ink">
-        <p>I&apos;m Vinod Suthar, a software engineer based in Ahmedabad, India, with 3+ years of experience building high-performance backend systems, AI-powered applications, and full-stack products.</p>
-        <p>At PrimeApps Infotech, I&apos;ve led and contributed to complex platforms — from a contractor management system with LLM-based certificate verification and RAG knowledge bases, to a full CRM with an integrated email client, permission systems, real-time queues, and agentic AI workflows. I care deeply about system design, performance, and shipping things that scale.</p>
-      </section>
+      <header className="mx-auto max-w-5xl px-[5vw] pt-[18vh]">
+        <div className="font-mono text-[11px] uppercase tracking-widest text-ink-dim">Vinod Suthar · Software Engineer</div>
+        <h1 className="mt-4 font-display text-[clamp(48px,9vw,140px)] font-black leading-[0.9] tracking-[-0.04em]">
+          ABOUT.
+        </h1>
+        <p className="mt-8 max-w-2xl font-display text-xl leading-snug text-ink-dim md:text-2xl">
+          I&apos;m a software engineer based in Ahmedabad, India, with 3+ years building high-performance backend systems, AI-powered applications, and full-stack products.
+        </p>
+      </header>
 
-      <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Now</h2>
-        <p className="mt-3 text-lg">Software Engineer at PrimeApps Infotech since March 2022 — currently leading backend development on a CRM platform, building everything from email clients and pipeline modules to AI agent integrations and background job infrastructure.</p>
-      </section>
+      <div className="mx-auto grid max-w-7xl gap-12 px-[5vw] py-16 lg:grid-cols-12 lg:gap-16">
+        <aside className="lg:col-span-3">
+          <div className="space-y-8 lg:sticky lg:top-24">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Now</div>
+              <p className="mt-2 text-sm leading-relaxed">
+                Software Engineer at PrimeApps Infotech since March 2022 — leading backend development on a CRM platform.
+              </p>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Location</div>
+              <div className="mt-1 font-display text-base">Ahmedabad, India</div>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Available for</div>
+              <p className="mt-2 text-sm text-ink-dim">Backend architecture, AI integrations, full-stack contracts.</p>
+            </div>
+          </div>
+        </aside>
 
-      <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Languages</h2>
-        <p className="mt-3 text-lg">TypeScript · JavaScript · PHP · Java · C++</p>
-      </section>
+        <div className="lg:col-span-8 lg:col-start-5">
+          <section>
+            <p className="text-lg leading-relaxed">
+              At PrimeApps Infotech, I&apos;ve led and contributed to complex platforms — from a contractor management system with LLM-based certificate verification and RAG knowledge bases, to a full CRM with an integrated email client, permission systems, real-time queues, and agentic AI workflows. I care deeply about system design, performance, and shipping things that scale.
+            </p>
+          </section>
 
-      <section className="mt-10">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Backend &amp; Frameworks</h2>
-        <p className="mt-3 text-lg">NestJS · Node.js · Express.js · Laravel · REST APIs · GraphQL · System Design &amp; Architecture</p>
-      </section>
+          <section className="mt-16">
+            <h2 className="font-display text-2xl font-black tracking-tight md:text-3xl">Stack</h2>
+            <dl className="mt-6 border-t border-line">
+              {skills.map((s) => (
+                <div key={s.label} className="border-b border-line py-5 md:grid md:grid-cols-12 md:gap-6">
+                  <dt className="font-mono text-[11px] uppercase tracking-widest text-ink-dim md:col-span-3">{s.label}</dt>
+                  <dd className="mt-2 text-base leading-relaxed md:col-span-9 md:mt-0">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
 
-      <section className="mt-10">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Databases &amp; Messaging</h2>
-        <p className="mt-3 text-lg">MongoDB · PostgreSQL · MySQL · Redis (Caching) · RabbitMQ · BullMQ · Prisma ORM · Sequelize · Mongoose</p>
-      </section>
+          <section id="contact" className="mt-16">
+            <h2 className="font-display text-2xl font-black tracking-tight md:text-3xl">Contact</h2>
+            <dl className="mt-6 border-t border-line">
+              {contactLinks.map((c) => (
+                <div key={c.label} className="border-b border-line py-4 md:grid md:grid-cols-12 md:items-baseline md:gap-6">
+                  <dt className="font-mono text-[11px] uppercase tracking-widest text-ink-dim md:col-span-3">{c.label}</dt>
+                  <dd className="mt-1 md:col-span-9 md:mt-0">
+                    <a
+                      className="text-base underline decoration-ink-dim underline-offset-4 transition-colors hover:decoration-accent"
+                      href={c.href}
+                      {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      {c.display}
+                    </a>
+                  </dd>
+                </div>
+              ))}
+            </dl>
 
-      <section className="mt-10">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">AI &amp; MCP</h2>
-        <p className="mt-3 text-lg">LLM Integration · RAG · AI Agents · MCP Server (SSE + HTTP Streaming) · vLLM · Agentic Workflows · OpenAI · Anthropic SDK · Chatbot &amp; Voice Agent</p>
-      </section>
-
-      <section className="mt-10">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Frontend &amp; Integrations</h2>
-        <p className="mt-3 text-lg">React.js · Next.js · Payload CMS · Stripe · BigBlueButton · Google OAuth &amp; Gmail API · Microsoft Graph API (Outlook) · IMAP · Merge API · Monday.com · Checkr · AWS SES · AWS S3 · Git · Nginx</p>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Education</h2>
-        <p className="mt-3 text-lg">MCA — LJ College, Ahmedabad · 2022</p>
-        <p className="mt-1 text-lg">BCOM — MLSU, Udaipur · 2018</p>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Spoken Languages</h2>
-        <p className="mt-3 text-lg">English · Hindi · Gujarati</p>
-      </section>
-
-      <section id="contact" className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-ink-dim">Contact</h2>
-        <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-lg sm:grid-cols-[max-content_1fr]">
-          <dt className="font-mono text-xs uppercase tracking-widest text-ink-dim sm:self-center">Email</dt>
-          <dd><a className="underline-offset-4 hover:underline" href="mailto:vinodkumar850386@gmail.com">vinodkumar850386@gmail.com</a></dd>
-          <dt className="font-mono text-xs uppercase tracking-widest text-ink-dim sm:self-center">Phone</dt>
-          <dd><a className="underline-offset-4 hover:underline" href="tel:+918503864833">+91 85038 64833</a></dd>
-          <dt className="font-mono text-xs uppercase tracking-widest text-ink-dim sm:self-center">Location</dt>
-          <dd>Ahmedabad, Gujarat, India</dd>
-          <dt className="font-mono text-xs uppercase tracking-widest text-ink-dim sm:self-center">GitHub</dt>
-          <dd><a className="underline-offset-4 hover:underline" href="https://github.com/vivenn" target="_blank" rel="noopener noreferrer">github.com/vivenn</a></dd>
-          <dt className="font-mono text-xs uppercase tracking-widest text-ink-dim sm:self-center">LinkedIn</dt>
-          <dd><a className="underline-offset-4 hover:underline" href="https://linkedin.com/in/vinod-suthar-04b4262b0" target="_blank" rel="noopener noreferrer">linkedin.com/in/vinod-suthar-04b4262b0</a></dd>
-          <dt className="font-mono text-xs uppercase tracking-widest text-ink-dim sm:self-center">YouTube</dt>
-          <dd><a className="underline-offset-4 hover:underline" href="https://www.youtube.com/@vivenxfilm" target="_blank" rel="noopener noreferrer">youtube.com/@vivenxfilm</a></dd>
-          <dt className="font-mono text-xs uppercase tracking-widest text-ink-dim sm:self-center">Instagram</dt>
-          <dd><a className="underline-offset-4 hover:underline" href="https://www.instagram.com/vivenxfilm.io/" target="_blank" rel="noopener noreferrer">instagram.com/vivenxfilm.io</a></dd>
-        </dl>
-        <div className="mt-10"><ContactForm /></div>
-      </section>
+            <div className="mt-12">
+              <h3 className="font-display text-xl font-bold tracking-tight">Send a message</h3>
+              <div className="mt-6">
+                <ContactForm />
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </article>
   );
 }
