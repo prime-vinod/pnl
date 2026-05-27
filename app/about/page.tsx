@@ -49,7 +49,7 @@ export default function AboutPage() {
           ABOUT.
         </h1>
         <p className="mt-8 max-w-2xl font-display text-xl leading-snug text-ink-dim md:text-2xl">
-          I&apos;m a software engineer based in Ahmedabad, India, with 3+ years building high-performance backend systems, AI-powered applications, and full-stack products.
+          I&apos;m Vinod Suthar — a software engineer based in Ahmedabad, India, with 3+ years building high-performance backend systems, AI-powered applications, and full-stack products.
         </p>
       </header>
 
@@ -57,10 +57,11 @@ export default function AboutPage() {
         <aside className="lg:col-span-3">
           <div className="space-y-8 lg:sticky lg:top-24">
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Now</div>
-              <p className="mt-2 text-sm leading-relaxed">
-                Software Engineer at PrimeApps Infotech since March 2022 — leading backend development on a CRM platform.
-              </p>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Status</div>
+              <div className="mt-2 flex items-center gap-2 text-sm">
+                <span className="inline-block size-2 animate-pulse rounded-full bg-accent" />
+                <span>Open to collaborate</span>
+              </div>
             </div>
             <div>
               <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">Location</div>
@@ -77,6 +78,13 @@ export default function AboutPage() {
           <section>
             <p className="text-lg leading-relaxed">
               At PrimeApps Infotech, I&apos;ve led and contributed to complex platforms — from a contractor management system with LLM-based certificate verification and RAG knowledge bases, to a full CRM with an integrated email client, permission systems, real-time queues, and agentic AI workflows. I care deeply about system design, performance, and shipping things that scale.
+            </p>
+          </section>
+
+          <section className="mt-16">
+            <h2 className="font-display text-2xl font-black tracking-tight md:text-3xl">Now</h2>
+            <p className="mt-4 text-lg leading-relaxed">
+              Software Engineer at PrimeApps Infotech since March 2022 — currently leading backend development on a CRM platform, building everything from email clients and pipeline modules to AI agent integrations and background job infrastructure.
             </p>
           </section>
 
